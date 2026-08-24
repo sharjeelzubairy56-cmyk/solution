@@ -52,6 +52,14 @@ export function buildFormattedSabaqsText(): string {
     docText += `${sabaq.titleEnglish} | ${sabaq.titleUrdu}\n`;
     docText += `==================================================\n\n`;
 
+    if (sabaq.lessonVocab && sabaq.lessonVocab.length > 0) {
+      docText += `[ سبق کے دائیں جانب والے کلمات و معانی (Lesson Vocabulary) ]\n`;
+      sabaq.lessonVocab.forEach((v, idx) => {
+        docText += `${idx + 1}. ${v.arabic}  --->  ${v.urdu}\n`;
+      });
+      docText += `\n`;
+    }
+
     if (sabaq.q1Vocab && sabaq.q1Vocab.length > 0) {
       docText += `[ سوال 1: عربی الفاظ کا اردو مطلب ]\n`;
       sabaq.q1Vocab.forEach((v, idx) => {
@@ -143,6 +151,18 @@ export function downloadDocsHtmlFile(filename = 'Muallim_ul_Quran_Unit1_Complete
         <div style="page-break-before: always; margin-top: 40px;">
           <h2>${sabaq.titleEnglish} | ${sabaq.titleUrdu}</h2>
           
+          ${
+            sabaq.lessonVocab && sabaq.lessonVocab.length > 0
+              ? `
+            <h3 style="color:#b45309;">سبق کے دائیں جانب والے کلمات و معانی (Lesson Vocabulary)</h3>
+            <table>
+              <tr style="background-color:#fef3c7;"><th>کلمہ / عربی لفظ</th><th>اردو معنی و مفہوم</th></tr>
+              ${sabaq.lessonVocab.map((v) => `<tr><td class="arabic">${v.arabic}</td><td class="urdu">${v.urdu}</td></tr>`).join('')}
+            </table>
+          `
+              : ''
+          }
+
           ${
             sabaq.q1Vocab && sabaq.q1Vocab.length > 0
               ? `

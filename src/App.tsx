@@ -33,6 +33,9 @@ export default function App() {
     if (!searchQuery.trim()) return true;
 
     const q = searchQuery.toLowerCase();
+    const matchesLessonVocab = (sabaq.lessonVocab || []).some(
+      (v) => v.arabic.toLowerCase().includes(q) || v.urdu.toLowerCase().includes(q)
+    );
     const matchesVocab = (sabaq.q1Vocab || []).some(
       (v) => v.arabic.toLowerCase().includes(q) || v.urdu.toLowerCase().includes(q)
     );
@@ -51,9 +54,10 @@ export default function App() {
       (v) => v.arabic.toLowerCase().includes(q) || v.urdu.toLowerCase().includes(q)
     );
 
-    return matchesVocab || matchesQ2 || matchesQ3 || matchesMissing || matchesHarakat || matchesRoots || matchesVerses;
+    return matchesLessonVocab || matchesVocab || matchesQ2 || matchesQ3 || matchesMissing || matchesHarakat || matchesRoots || matchesVerses;
   });
 
+  const totalLessonVocab = SABAQS_DATA.reduce((acc, curr) => acc + (curr.lessonVocab?.length || 0), 0);
   const totalVocab = SABAQS_DATA.reduce((acc, curr) => acc + (curr.q1Vocab?.length || 0), 0);
   const totalMissing = SABAQS_DATA.reduce((acc, curr) => acc + (curr.q4MissingLetters?.length || 0), 0);
   const totalRoots = SABAQS_DATA.reduce((acc, curr) => acc + (curr.q6RootWords?.length || 0), 0);
@@ -83,6 +87,11 @@ export default function App() {
     let text = `معلم القرآن یونٹ 1 - مکمل حل شدہ مشقیں (سبق 1 تا 19)\n\n`;
     SABAQS_DATA.forEach((s) => {
       text += `===============================\n${s.titleEnglish} | ${s.titleUrdu}\n===============================\n\n`;
+      if (s.lessonVocab && s.lessonVocab.length > 0) {
+        text += `[ سبق کے دائیں جانب والے کلمات و معانی ]\n`;
+        s.lessonVocab.forEach((v) => (text += `${v.arabic} : ${v.urdu}\n`));
+        text += `\n`;
+      }
       if (s.q1Vocab && s.q1Vocab.length > 0) {
         text += `[ سوال 1: الفاظ و معانی ]\n`;
         s.q1Vocab.forEach((v) => (text += `${v.arabic} : ${v.urdu}\n`));
@@ -212,7 +221,7 @@ export default function App() {
                 </div>
                 <div className="bg-slate-50 p-2 rounded-lg border border-slate-100">
                   <p className="text-[11px] text-slate-500 font-urdu">الفاظ و معانی</p>
-                  <p className="text-base font-bold text-indigo-600">{totalVocab}</p>
+                  <p className="text-base font-bold text-indigo-600">{totalLessonVocab + totalVocab}</p>
                 </div>
                 <div className="bg-slate-50 p-2 rounded-lg border border-slate-100">
                   <p className="text-[11px] text-slate-500 font-urdu">اعراب / مادہ</p>

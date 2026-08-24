@@ -58,6 +58,48 @@ export const SabaqCard: React.FC<SabaqCardProps> = ({
         </span>
       </div>
 
+      {/* دائیں جانب کے کلماتِ قرآنی اور الفاظ و معانی (Lesson Vocabulary - Right Side Words) */}
+      {sabaq.lessonVocab && sabaq.lessonVocab.length > 0 && (
+        <div className="mb-8 p-4 sm:p-5 rounded-xl bg-amber-50/40 border border-amber-200/70">
+          <div className="mb-3 flex items-center justify-between">
+            <h3 className="text-sm font-semibold text-amber-900 uppercase tracking-wider font-latin flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-amber-500" />
+              Lesson Vocabulary (سبق کے دائیں جانب والے تمام کلمات و معانی)
+            </h3>
+            <span className="text-xs font-semibold text-amber-800 font-urdu">
+              کل الفاظ و معانی: {sabaq.lessonVocab.length}
+            </span>
+          </div>
+
+          <div className="overflow-hidden border border-amber-200/80 rounded-lg bg-white">
+            <table className="w-full text-right border-collapse" dir="rtl">
+              <thead>
+                <tr className="bg-amber-100/60 border-b border-amber-200">
+                  <th className="py-2.5 px-4 font-bold text-amber-950 text-base border-l border-amber-200 w-1/2 font-arabic">
+                    کلمہ / عربی لفظ
+                  </th>
+                  <th className="py-2.5 px-4 font-bold text-amber-950 text-base w-1/2 font-arabic">
+                    اردو معنی و مفہوم
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-amber-100/60">
+                {sabaq.lessonVocab.map((item, idx) => (
+                  <tr key={idx} className="hover:bg-amber-50/60 transition-colors">
+                    <td className="py-2.5 px-4 text-lg font-bold text-slate-900 border-l border-amber-100 font-arabic leading-relaxed">
+                      {highlightMatch(item.arabic)}
+                    </td>
+                    <td className="py-2.5 px-4 text-sm font-medium text-slate-800 font-urdu leading-loose">
+                      {highlightMatch(item.urdu)}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+
       {/* سوال 1: عربی الفاظ کا اردو میں مطلب */}
       {sabaq.q1Vocab && sabaq.q1Vocab.length > 0 && (
         <div className="mb-8">

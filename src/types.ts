@@ -44,13 +44,14 @@ export interface Sabaq {
   sabaqNumber: number;
   titleUrdu: string;
   titleEnglish: string;
-  q1Vocab: Q1Item[];            // سوال 1: عربی الفاظ کا مطلب بتائیں
-  q2UrduToArabic?: Q2Item[];    // سوال 2: الفاظ کو عربی میں کیا کہتے ہیں
-  q3Explanation?: Q3Item[];     // سوال 3: ان الفاظ کے بارے میں کیا جانتے ہیں
-  q4MissingLetters: string[];   // سوال 4: نامکمل الفاظ مکمل کریں
-  q5Harakat: string[];          // سوال 5: مناسب حرکات لگائیں
-  q6RootWords: Q6Item[];        // سوال 6: حروف ملا کر ایک لفظ بنائیں
-  q7Verses: Q7Item[];           // سوال 7: قرآنی قطعات و آیات کا ترجمہ
+  lessonVocab: Q1Item[];        // دائیں جانب کے تمام بنیادی الفاظ و معانی (Words and Meanings at the right side of the lesson)
+  q1Vocab: Q1Item[];            // مشق - سوال 1: عربی الفاظ کا مطلب بتائیں
+  q2UrduToArabic?: Q2Item[];    // مشق - سوال 2: الفاظ کو عربی میں کیا کہتے ہیں
+  q3Explanation?: Q3Item[];     // مشق - سوال 3: ان الفاظ کے بارے میں کیا جانتے ہیں
+  q4MissingLetters: string[];   // مشق - سوال 4: نامکمل الفاظ مکمل کریں
+  q5Harakat: string[];          // مشق - سوال 5: مناسب حرکات لگائیں
+  q6RootWords: Q6Item[];        // مشق - سوال 6: حروف ملا کر ایک لفظ بنائیں
+  q7Verses: Q7Item[];           // مشق - سوال 7: قرآنی قطعات و آیات کا ترجمہ
   grammarExercises?: {          // فارمولا / اضافی مشقیں (سبق 12 تا 19)
     title: string;
     items: GrammarRuleItem[];
