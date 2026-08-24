@@ -44,6 +44,8 @@ export interface Sabaq {
   sabaqNumber: number;
   titleUrdu: string;
   titleEnglish: string;
+  introText?: string;
+  importantNotes?: string[];
   lessonVocab: Q1Item[];        // دائیں جانب کے تمام بنیادی الفاظ و معانی (Words and Meanings at the right side of the lesson)
   q1Vocab: Q1Item[];            // مشق - سوال 1: عربی الفاظ کا مطلب بتائیں
   q2UrduToArabic?: Q2Item[];    // مشق - سوال 2: الفاظ کو عربی میں کیا کہتے ہیں
