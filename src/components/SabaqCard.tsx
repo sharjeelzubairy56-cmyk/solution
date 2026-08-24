@@ -58,6 +58,27 @@ export const SabaqCard: React.FC<SabaqCardProps> = ({
         </span>
       </div>
 
+      {/* Intro Text & Important Notes if present */}
+      {sabaq.introText && (
+        <div className="mb-6 p-4 rounded-xl bg-slate-50 border border-slate-200 text-right font-urdu" dir="rtl">
+          <p className="text-slate-800 text-base leading-relaxed">{sabaq.introText}</p>
+        </div>
+      )}
+
+      {sabaq.importantNotes && sabaq.importantNotes.length > 0 && (
+        <div className="mb-6 p-4 rounded-xl bg-blue-50/60 border border-blue-200 text-right font-urdu" dir="rtl">
+          <h4 className="font-bold text-blue-900 text-sm mb-2 flex items-center gap-1.5 justify-start">
+            <span>📌</span>
+            <span>اہم نکات (Important Notes):</span>
+          </h4>
+          <ul className="list-disc list-inside space-y-1 text-slate-800 text-sm leading-relaxed">
+            {sabaq.importantNotes.map((note, nIdx) => (
+              <li key={nIdx}>{note}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+
       {/* دائیں جانب کے کلماتِ قرآنی اور الفاظ و معانی (Lesson Vocabulary - Right Side Words) */}
       {sabaq.lessonVocab && sabaq.lessonVocab.length > 0 && (
         <div className="mb-8 p-4 sm:p-5 rounded-xl bg-amber-50/40 border border-amber-200/70">
