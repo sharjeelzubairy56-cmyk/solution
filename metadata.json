@@ -1,0 +1,6 @@
+{
+  "name": "Muallim-ul-Quran Solutions",
+  "description": "Complete formatted solutions and PDF generator for Muallim-ul-Quran Unit 1 Sabaq 1 to 19 with Google Docs integration.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
